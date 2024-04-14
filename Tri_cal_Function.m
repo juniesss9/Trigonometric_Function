@@ -1,31 +1,35 @@
-function  Tri_cal_Function(x,n)
-% Tri_cal_Function - ä¸‰è§’å‡½æ•°è®¡ç®—å™¨
+function  [text1,text2,warning2,warning1] = Tri_cal_Function(x,n)
+% Tri_cal_Function - Èı½Çº¯Êı¼ÆËãÆ÷
 %
-% è¾“å…¥å‚æ•°ï¼š
-%   x - è¾“å…¥å˜é‡ï¼Œå¯ä»¥æ˜¯ä¸€ä¸ªè§’åº¦ï¼Œä¹Ÿå¯ä»¥æ˜¯ä¸€ä¸ªæ•°å€¼
-%   n - è¾“å…¥å˜é‡ï¼Œä¸º1åˆ¤æ–­xæ˜¯è§’åº¦ï¼Œä¸º2åˆ¤æ–­xæ˜¯æ•°å€¼ 
+% ÊäÈë²ÎÊı£º
+%   x - ÊäÈë±äÁ¿£¬¿ÉÒÔÊÇÒ»¸ö½Ç¶È£¬Ò²¿ÉÒÔÊÇÒ»¸öÊıÖµ
+%   n - ÊäÈë±äÁ¿£¬Îª1ÅĞ¶ÏxÊÇ½Ç¶È£¬Îª2ÅĞ¶ÏxÊÇÊıÖµ 
 %
-% è¾“å‡ºæ˜¾ç¤ºï¼š
-%   æ³°å‹’çº§æ•°å±•å¼€è®¡ç®—å¾—åˆ°çš„ä¸‰è§’å‡½æ•°å€¼ï¼Œä¸MATLABå†…ç½®ä¸‰è§’å‡½æ•°è¿›è¡Œæ¯”è¾ƒä»¥åŠç›¸å¯¹è¯¯å·®
+% Êä³öÏÔÊ¾£º
+%   text1,text2 - Ì©ÀÕ¼¶ÊıÕ¹¿ª¼ÆËãµÃµ½µÄÈı½Çº¯ÊıÖµ£¬ÓëMATLABÄÚÖÃÈı½Çº¯Êı½øĞĞ±È½ÏÒÔ¼°Ïà¶ÔÎó²î
+%   warning1,warning2 - ·Ç·¨ÊäÈëÊ±µ¯³ö¾¯¸æÌáÊ¾
+    
 
 if n==1
     inputNum=rad2deg(x);
     [y_sin,mat_sin,error_sin]=my_sin(x);
-    disp(['my_sin(', num2str(inputNum), 'Â°) = ', num2str(y_sin),', matlab_sin(', num2str(inputNum), 'Â°) = ', num2str(mat_sin),', ä¸matlabçš„sinåº“å‡½æ•°ä¹‹é—´çš„ç›¸å¯¹è¯¯å·® = ', num2str(error_sin)]);
+   text1 = ['my_sin(', num2str(inputNum), '¡ã) = ', num2str(y_sin),', matlab_sin(', num2str(inputNum), '¡ã) = ', num2str(mat_sin),', ÓëmatlabµÄsin¿âº¯ÊıÖ®¼äµÄÏà¶ÔÎó²î = ', num2str(error_sin)];
     [y_cos,mat_cos,error_cos]=my_cos(x);
-    disp(['my_cos(', num2str(inputNum), 'Â°) = ', num2str(y_cos),', matlab_cos(', num2str(inputNum), 'Â°) = ', num2str(mat_cos),', ä¸matlabçš„cosåº“å‡½æ•°ä¹‹é—´çš„ç›¸å¯¹è¯¯å·® = ', num2str(error_cos)]);
+   text2 = ['my_cos(', num2str(inputNum), '¡ã) = ', num2str(y_cos),', matlab_cos(', num2str(inputNum), '¡ã) = ', num2str(mat_cos),', ÓëmatlabµÄcos¿âº¯ÊıÖ®¼äµÄÏà¶ÔÎó²î = ', num2str(error_cos)];
+   warning1 = '';
+   warning2 = '';
 else
-    [y_arctan,mat_arctan,error_arctan]=my_arctan(x);
-    disp(['my_arctan(', num2str(x), ') = ', num2str(y_arctan),'Â°, matlab_arctan(', num2str(x), ') = ', num2str(mat_arctan),'Â°, ä¸matlabçš„arctanåº“å‡½æ•°ä¹‹é—´çš„ç›¸å¯¹è¯¯å·® = ', num2str(error_arctan),'Â°']);
-    [y_arcsin,mat_arcsin,error_arcsin]=my_arcsin(x);
-    disp(['my_arcsin(', num2str(x), ') = ', num2str(y_arcsin),'Â°, matlab_arcsin(', num2str(x), ') = ', num2str(mat_arcsin),'Â°, ä¸matlabçš„arcsinåº“å‡½æ•°ä¹‹é—´çš„ç›¸å¯¹è¯¯å·® = ', num2str(error_arcsin),'Â°']);
+    [y_arctan,mat_arctan,error_arctan,warning2]=my_arctan(x);
+   text1 = ['my_arctan(', num2str(x), ') = ', num2str(y_arctan),'¡ã, matlab_arctan(', num2str(x), ') = ', num2str(mat_arctan),'¡ã, ÓëmatlabµÄarctan¿âº¯ÊıÖ®¼äµÄÏà¶ÔÎó²î = ', num2str(error_arctan),'¡ã'];
+    [y_arcsin,mat_arcsin,error_arcsin,warning1]=my_arcsin(x);
+   text2 = ['my_arcsin(', num2str(x), ') = ', num2str(y_arcsin),'¡ã, matlab_arcsin(', num2str(x), ') = ', num2str(mat_arcsin),'¡ã, ÓëmatlabµÄarcsin¿âº¯ÊıÖ®¼äµÄÏà¶ÔÎó²î = ', num2str(error_arcsin),'¡ã'];
 end
 end
 
-%è®¡ç®—sin
+%¼ÆËãsin
 function [result_sin,mat_sin,error_sin] = my_sin(x)
 result_sin = 0;
-n = 10; % æ³°å‹’çº§æ•°å±•å¼€é¡¹æ•°ï¼Œå¯ä»¥æ ¹æ®éœ€è¦è°ƒæ•´
+n = 10; % Ì©ÀÕ¼¶ÊıÕ¹¿ªÏîÊı£¬¿ÉÒÔ¸ù¾İĞèÒªµ÷Õû
 for k = 0:n
     result_sin = result_sin + ((-1)^k * x^(2*k+1)) / factorial(2*k+1);
 end
@@ -33,10 +37,10 @@ mat_sin=sin(x);
 error_sin=abs(result_sin-mat_sin)/abs(mat_sin);
 end
 
-%è®¡ç®—cos
+%¼ÆËãcos
 function [result_cos,mat_cos,error_cos]= my_cos(x)
 result_cos = 0;
-n = 10; % æ³°å‹’çº§æ•°å±•å¼€é¡¹æ•°ï¼Œå¯ä»¥æ ¹æ®éœ€è¦è°ƒæ•´
+n = 10; % Ì©ÀÕ¼¶ÊıÕ¹¿ªÏîÊı£¬¿ÉÒÔ¸ù¾İĞèÒªµ÷Õû
 for k = 0:n
     result_cos = result_cos + ((-1)^k * x^(2*k)) / factorial(2*k);
 end
@@ -44,17 +48,18 @@ mat_cos=cos(x);
 error_cos=abs(result_cos-mat_cos)/abs(mat_cos);
 end
 
-%è®¡ç®—arcsin å®šä¹‰åŸŸèŒƒå›´æ˜¯-1åˆ°1ä¹‹é—´
-function [result_arcsin,mat_arcsin,error_arcsin] = my_arcsin(x)
+%¼ÆËãarcsin ¶¨ÒåÓò·¶Î§ÊÇ-1µ½1Ö®¼ä
+function [result_arcsin,mat_arcsin,error_arcsin,warning1] = my_arcsin(x)
 if x<=1 && x>=-1
     result_arcsin = 0;
-    n = 10; % æ³°å‹’çº§æ•°å±•å¼€é¡¹æ•°ï¼Œå¯ä»¥æ ¹æ®éœ€è¦è°ƒæ•´
+    n = 10; % Ì©ÀÕ¼¶ÊıÕ¹¿ªÏîÊı£¬¿ÉÒÔ¸ù¾İĞèÒªµ÷Õû
     for k = 0:n
         result_arcsin = result_arcsin + (factorial(2*k) * x^(2*k+1)) / (4^k * factorial(k)^2 * (2*k+1));
     end
     mat_arcsin=asin(x);
+    warning1 = '';
 else
-    disp('arcsinå‡½æ•°è¾“å…¥æ•°å€¼è¶…å‡ºå®šä¹‰åŸŸ');
+    warning1 = 'arcsinº¯ÊıÊäÈëÊıÖµ³¬³ö¶¨ÒåÓò!';
     result_arcsin=NaN;
     mat_arcsin=NaN;
 end
@@ -63,17 +68,18 @@ mat_arcsin= rad2deg(mat_arcsin);
 error_arcsin= abs(result_arcsin-mat_arcsin)/abs(mat_arcsin);
 end
 
-%è®¡ç®—arctan å®šä¹‰åŸŸèŒƒå›´æ˜¯-1åˆ°1ä¹‹é—´çš„è¿‘ä¼¼è®¡ç®—ï¼Œç²¾åº¦æœ‰é™
-function [result_arctan,mat_arctan,error_arctan] = my_arctan(x)
+%¼ÆËãarctan ¶¨ÒåÓò·¶Î§ÊÇ-1µ½1Ö®¼äµÄ½üËÆ¼ÆËã£¬¾«¶ÈÓĞÏŞ
+function [result_arctan,mat_arctan,error_arctan,warning2] = my_arctan(x)
 if x<=1 && x>=-1
     result_arctan = 0;
-    n = 30; % æ³°å‹’çº§æ•°å±•å¼€é¡¹æ•°ï¼Œå¯ä»¥æ ¹æ®éœ€è¦è°ƒæ•´
+    n = 30; % Ì©ÀÕ¼¶ÊıÕ¹¿ªÏîÊı£¬¿ÉÒÔ¸ù¾İĞèÒªµ÷Õû
     for k = 0:n
         result_arctan = result_arctan + ((-1)^k * x^(2*k+1)) / (2*k+1);
     end
     mat_arctan=atan(x);
+    warning2 = '';
 else
-    disp('my_arctanå‡½æ•°ç²¾åº¦æœ‰é™ï¼Œè¾“å…¥åœ¨0é™„è¿‘ç²¾åº¦è¾ƒé«˜');
+    warning2 = 'my_arctanº¯Êı¾«¶ÈÓĞÏŞ£¬ÊäÈëÔÚ0¸½½ü¾«¶È½Ï¸ß!';
     result_arctan=NaN;
     mat_arctan=atan(x);
 end
@@ -82,7 +88,7 @@ mat_arctan= rad2deg(mat_arctan);
 error_arctan= abs(result_arctan-mat_arctan)/ abs(mat_arctan);
 end
 
-%å¼§åº¦è½¬åŒ–ä¸ºè§’åº¦
+%»¡¶È×ª»¯Îª½Ç¶È
 function degrees = rad2deg(radians)
 degrees = radians * (180 / pi);
 end
